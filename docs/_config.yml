@@ -1,0 +1,5 @@
+title: ACM Scholar Agent
+description: 一键搜索下载 ACM 论文，AI 问答助手
+theme: null
+include:
+  - index.html

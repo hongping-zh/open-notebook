@@ -1,0 +1,43 @@
+# Railway Backend Dockerfile
+FROM python:3.12-slim-bookworm
+
+# Install uv and system dependencies
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
+RUN apt-get update && apt-get install -y \
+    gcc g++ git make \
+    ffmpeg \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV UV_COMPILE_BYTECODE=1
+ENV UV_LINK_MODE=copy
+
+WORKDIR /app
+
+# Copy dependency files first for caching
+COPY pyproject.toml uv.lock ./
+COPY open_notebook/__init__.py ./open_notebook/__init__.py
+
+# Install dependencies
+RUN uv sync --frozen --no-dev
+
+# Copy application code
+COPY . /app
+
+# Create data directory
+RUN mkdir -p /app/data
+
+# Expose API port
+EXPOSE 5055
+
+# Set default environment variables
+ENV API_HOST=0.0.0.0
+ENV API_PORT=5055
+ENV API_RELOAD=false
+
+# Run the API server
+CMD ["uv", "run", "python", "run_api.py"]

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACM Scholar Agent | Open Notebook</title>
+    <meta name="description" content="一键搜索下载 ACM 论文，AI 问答助手 - 基于 Open Notebook 的学术研究工具">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .btn-primary {
+            background: white;
+            color: #667eea;
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: 2px solid white;
+        }
+        
+        /* Cards */
+        .card-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 20px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .card-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        
+        /* Features Grid */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .feature {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .feature p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        /* Advantages */
+        .advantages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .advantage {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 15px;
+            background: #f0f4ff;
+            border-radius: 10px;
+        }
+        
+        .advantage-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .advantage-text h4 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .advantage-text p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Video Section */
+        .video-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .video-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        
+        .video-link:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Code Block */
+        .code-block {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin: 20px 0;
+        }
+        
+        .code-block .comment {
+            color: #6a9955;
+        }
+        
+        /* Links Section */
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .link-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            transition: background 0.2s;
+        }
+        
+        .link-card:hover {
+            background: #e9ecef;
+        }
+        
+        .link-card span {
+            font-size: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            opacity: 0.9;
+        }
+        
+        footer a {
+            color: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .card-section {
+                padding: 25px;
+            }
+            
+            .btn {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <section class="hero">
+            <h1>🎓 ACM Scholar Agent</h1>
+            <p>一键搜索下载 ACM 论文，AI 问答助手<br>基于 Open Notebook 的开源学术研究工具</p>
+            <a href="https://github.com/hongping-zh/open-notebook" class="btn btn-primary">⭐ GitHub 仓库</a>
+            <a href="https://drive.google.com/file/d/1xPVI2EUEtvbNSVgpg4eQ4xNrG4IyGrD2/view" class="btn btn-secondary">🎬 观看演示</a>
+        </section>
+        
+        <!-- Features -->
+        <section class="card-section">
+            <h2>✨ 核心功能</h2>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🔍</div>
+                    <h3>智能搜索</h3>
+                    <p>通过 OpenAlex API 搜索 ACM 论文，自动过滤开放获取版本</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📥</div>
+                    <h3>一键下载</h3>
+                    <p>自动从 arXiv 等可信源下载 PDF，无需手动操作</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📖</div>
+                    <h3>内容提取</h3>
+                    <p>自动解析 PDF，提取文本内容并建立向量索引</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💬</div>
+                    <h3>AI 问答</h3>
+                    <p>基于论文内容与 AI 对话，快速理解核心观点</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Why Choose -->
+        <section class="card-section">
+            <h2>💡 为什么选择 ACM Scholar Agent？</h2>
+            <div class="advantages">
+                <div class="advantage">
+                    <div class="advantage-icon">🆓</div>
+                    <div class="advantage-text">
+                        <h4>完全免费 & 开源</h4>
+                        <p>MIT 协议，搜索无需 API Key，数据完全私有</p>
+                    </div>
+                </div>
+                <div class="advantage">
+                    <div class="advantage-icon">🎯</div>
+                    <div class="advantage-text">
+                        <h4>专注 ACM + CS</h4>
+                        <p>精准过滤 ACM 出版物，优先高引用论文</p>
+                    </div>
+                </div>
+                <div class="advantage">
+                    <div class="advantage-icon">📄</div>
+                    <div class="advantage-text">
+                        <h4>智能 PDF 源</h4>
+                        <p>自动选择 arXiv、PubMed 等可信开放源</p>
+                    </div>
+                </div>
+                <div class="advantage">
+                    <div class="advantage-icon">🤖</div>
+                    <div class="advantage-text">
+                        <h4>AI 深度集成</h4>
+                        <p>支持 DeepSeek、OpenAI、Ollama 等 LLM</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Demo Video -->
+        <section class="card-section">
+            <h2>🎬 演示视频</h2>
+            <div class="video-container">
+                <a href="https://drive.google.com/file/d/1xPVI2EUEtvbNSVgpg4eQ4xNrG4IyGrD2/view" class="video-link" target="_blank">
+                    ▶️ 点击观看 3 分钟 Demo
+                </a>
+            </div>
+        </section>
+        
+        <!-- Quick Start -->
+        <section class="card-section">
+            <h2>🚀 快速开始</h2>
+            <p><strong>环境要求：</strong>Python 3.10+ | Node.js 18+ | SurrealDB</p>
+            <div class="code-block">
+<span class="comment"># 1. 克隆仓库</span>
+git clone https://github.com/hongping-zh/open-notebook.git
+cd open-notebook
+
+<span class="comment"># 2. 安装后端</span>
+python -m venv .venv
+.venv\Scripts\activate
+pip install -e .
+
+<span class="comment"># 3. 安装前端</span>
+cd frontend && npm install
+
+<span class="comment"># 4. 启动服务后访问 http://localhost:3000</span>
+            </div>
+            <p style="text-align: center; margin-top: 20px;">
+                <a href="https://github.com/hongping-zh/open-notebook/blob/main/docs/ACM_AGENT_TESTING_GUIDE.md" class="btn btn-primary" style="color: #667eea;">📖 完整安装指南</a>
+            </p>
+        </section>
+        
+        <!-- Links -->
+        <section class="card-section">
+            <h2>🔗 相关链接</h2>
+            <div class="links">
+                <a href="https://github.com/hongping-zh/open-notebook" class="link-card">
+                    <span>📦</span>
+                    <div>GitHub 仓库</div>
+                </a>
+                <a href="https://github.com/hongping-zh/open-notebook/blob/main/docs/ACM_AGENT_TESTING_GUIDE.md" class="link-card">
+                    <span>📖</span>
+                    <div>测试指南</div>
+                </a>
+                <a href="https://github.com/lfnovo/open-notebook" class="link-card">
+                    <span>🏠</span>
+                    <div>原项目</div>
+                </a>
+                <a href="https://github.com/lfnovo/open-notebook/pull/354" class="link-card">
+                    <span>🔀</span>
+                    <div>PR #354</div>
+                </a>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>基于 <a href="https://github.com/lfnovo/open-notebook">Open Notebook</a> 开发 | MIT License</p>
+        <p style="margin-top: 10px;">Made with ❤️ by <a href="https://github.com/hongping-zh">hongping-zh</a></p>
+    </footer>
+</body>
+</html>

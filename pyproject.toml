@@ -11,7 +11,7 @@ classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
 ]
-requires-python = ">=3.11,<3.13"
+requires-python = ">=3.10"
 dependencies = [
     "fastapi>=0.104.0",
     "uvicorn>=0.24.0",
@@ -40,10 +40,19 @@ dependencies = [
     "surrealdb>=1.0.4",
     "podcast-creator>=0.7.0",
     "surreal-commands>=1.2.0",
+    "typer>=0.12.3",
+    "rich>=13.7.0",
+    "pypdf>=3.17.0",
+    "pydantic-settings>=2.1.0",
+    "tqdm>=4.66.0",
+    "google-genai>=0.2.2",
 ]
 
+[project.scripts]
+acm = "acm_scholar_cli.cli:app"
+
 [tool.setuptools]
-package-dir = {"open_notebook" = "open_notebook"}
+packages = ["open_notebook", "acm_scholar_cli"]
 
 
 [project.optional-dependencies]

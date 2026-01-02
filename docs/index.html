@@ -333,6 +333,47 @@
             </div>
         </section>
         
+        <!-- CLI Tool -->
+        <section class="card-section">
+            <h2>🖥️ 命令行工具 (CLI)</h2>
+            <p style="margin-bottom: 20px;">轻量级命令行版本，无需安装完整环境，快速体验核心功能。</p>
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">📚</div>
+                    <h3>论文搜索</h3>
+                    <p>通过 OpenAlex 搜索论文，按引用数排序</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📥</div>
+                    <h3>PDF 下载</h3>
+                    <p>一键下载论文 PDF 到本地</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI 问答</h3>
+                    <p>基于 Gemini API 的智能问答</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>数据导出</h3>
+                    <p>导出 QA 对用于模型微调</p>
+                </div>
+            </div>
+            <div class="code-block">
+<span class="comment"># 安装 CLI 工具</span>
+pip install acm-scholar-cli
+
+<span class="comment"># 搜索论文</span>
+acm search "transformer attention"
+
+<span class="comment"># AI 问答</span>
+acm chat ask "这篇论文的主要贡献是什么？"
+
+<span class="comment"># 导出训练数据</span>
+acm data export --format jsonl
+            </div>
+        </section>
+        
         <!-- Quick Start -->
         <section class="card-section">
             <h2>🚀 快速开始</h2>

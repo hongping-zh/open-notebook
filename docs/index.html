@@ -50,16 +50,76 @@
         
         .hero .tagline {
             font-size: 1.25rem;
-            color: var(--text-secondary);
+            color: var(--text-primary);
+            font-weight: 500;
             max-width: 600px;
-            margin: 0 auto 32px;
+            margin: 0 auto 16px;
         }
         
         .hero .subtitle {
-            font-size: 1rem;
-            color: var(--text-secondary);
+            font-size: 1.1rem;
+            color: #10b981;
+            font-weight: 600;
             font-style: italic;
             margin-bottom: 40px;
+        }
+        
+        /* Quick Links */
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 40px 0;
+        }
+        
+        .quick-link {
+            background: linear-gradient(135deg, var(--bg-card), #1a2744);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s;
+        }
+        
+        .quick-link:hover {
+            border-color: var(--primary);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.15);
+        }
+        
+        .quick-link .icon { font-size: 2rem; margin-bottom: 12px; }
+        .quick-link h4 { font-size: 1rem; margin-bottom: 4px; }
+        .quick-link p { font-size: 0.85rem; color: var(--text-secondary); }
+        
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 0.9rem;
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .comparison-table th {
+            background: var(--bg-card);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .comparison-table td { color: var(--text-secondary); }
+        .comparison-table .check { color: #10b981; }
+        .comparison-table .cross { color: #ef4444; }
+        
+        @media (max-width: 640px) {
+            .quick-links { grid-template-columns: 1fr; }
         }
         
         /* Badges */
@@ -274,7 +334,7 @@
             <div class="hero-emoji">📝</div>
             <h1>Open Notebook</h1>
             <p class="tagline">A minimalist, high-performance personal knowledge base powered by VitePress.</p>
-            <p class="subtitle">Manage your notes like code, and publish them like professional documentation.</p>
+            <p class="subtitle">"Manage your notes like code, publish them like professional documentation."</p>
             
             <div class="badges">
                 <img src="https://img.shields.io/github/license/hongping-zh/open-notebook?style=flat-square&color=10b981" alt="license">
@@ -290,10 +350,29 @@
                     🚀 Deploy with Vercel
                 </a>
             </div>
+            
+            <!-- Quick Links -->
+            <div class="quick-links">
+                <a href="#quick-start" class="quick-link">
+                    <div class="icon">🚀</div>
+                    <h4>Quick Start</h4>
+                    <p>Up and running in 60s</p>
+                </a>
+                <a href="#features" class="quick-link">
+                    <div class="icon">✨</div>
+                    <h4>Features</h4>
+                    <p>See what's possible</p>
+                </a>
+                <a href="#deploy" class="quick-link">
+                    <div class="icon">🚢</div>
+                    <h4>Deploy Guide</h4>
+                    <p>One-click deployment</p>
+                </a>
+            </div>
         </section>
         
         <!-- Why Open Notebook -->
-        <section>
+        <section id="features">
             <h2>✨ Why Open Notebook?</h2>
             <p style="color: var(--text-secondary); margin-bottom: 32px;">
                 While tools like Notion are powerful, they often feel heavy and "lock" your data. Open Notebook is designed for developers who want a <strong style="color: var(--text-primary);">private, version-controlled, and lightning-fast</strong> alternative.
@@ -325,6 +404,57 @@
                     <p>Host for free on GitHub Pages, Vercel, or Netlify.</p>
                 </div>
             </div>
+            
+            <!-- Comparison Table -->
+            <h3 style="margin-top: 40px; margin-bottom: 16px;">📊 How does it compare?</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Open Notebook</th>
+                        <th>Notion</th>
+                        <th>Obsidian</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>No account required</td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Notes as code (Git)</td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Free hosting</td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="cross">✗</td>
+                    </tr>
+                    <tr>
+                        <td>Vue components</td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="cross">✗</td>
+                    </tr>
+                    <tr>
+                        <td>100% data ownership</td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                        <td class="check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>SEO-friendly publish</td>
+                        <td class="check">✓</td>
+                        <td class="check">✓</td>
+                        <td class="cross">✗</td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
         
         <!-- CLI Tool -->
@@ -359,7 +489,7 @@
         </section>
         
         <!-- Quick Start -->
-        <section>
+        <section id="quick-start">
             <h2>🚀 Quick Start</h2>
             <p style="color: var(--text-secondary); margin-bottom: 24px;">
                 Get your notebook up and running in less than 60 seconds.
@@ -391,7 +521,7 @@
         </section>
         
         <!-- Deployment -->
-        <section>
+        <section id="deploy">
             <h2>🚢 One-Click Deployment</h2>
             <p style="color: var(--text-secondary); margin-bottom: 24px;">
                 This project comes with a pre-configured GitHub Action.

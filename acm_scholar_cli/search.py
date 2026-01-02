@@ -22,8 +22,7 @@ config_manager = ConfigManager()
 _last_search_results: list = []
 
 
-@search_app.command("default")
-def search_default(
+def search_command(
     query: str = typer.Argument(..., help="搜索关键词"),
     year: Optional[int] = typer.Option(None, "--year", "-y", help="筛选特定年份的论文"),
     limit: int = typer.Option(10, "--limit", "-l", help="结果数量限制"),
@@ -103,7 +102,7 @@ def search_default(
         # 提示用户可以执行的操作
         console.print("\n[dim]可以使用以下命令继续操作:[/dim]")
         console.print("  [green]acm download --paper-id <id>[/green] - 下载论文")
-        console.print("  [green]acm search --from-last[/green] - 从上次搜索结果下载\n")
+        console.print("  [green]acm search-interactive[/green] - 从上次搜索结果下载\n")
 
     except typer.Exit:
         raise
@@ -112,8 +111,7 @@ def search_default(
         raise typer.Exit(1)
 
 
-@search_app.command("acm")
-def search_acm(
+def search_acm_command(
     query: str = typer.Argument(..., help="搜索关键词"),
     year: Optional[int] = typer.Option(None, "--year", "-y", help="筛选特定年份的论文"),
     limit: int = typer.Option(10, "--limit", "-l", help="结果数量限制"),
@@ -122,7 +120,7 @@ def search_acm(
     专门搜索 ACM 出版物中的论文。
 
     示例:
-        acm search acm "Neural Networks"
+        acm search-acm "Neural Networks"
     """
     config = config_manager.load()
 
@@ -179,8 +177,7 @@ def search_acm(
         raise typer.Exit(1)
 
 
-@search_app.command("interactive")
-def search_interactive() -> None:
+def interactive_command() -> None:
     """
     交互式搜索模式 - 可以在搜索结果中选择论文进行下载。
     """
@@ -225,8 +222,7 @@ def search_interactive() -> None:
         console.print(f"\n[cyan]将下载论文: {paper_id}[/cyan]")
 
 
-@search_app.command("last")
-def search_last() -> None:
+def last_command() -> None:
     """
     显示上次搜索的结果。
     """

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACM Scholar CLI Install Guide | Open Notebook</title>
+    <meta name="description" content="Local installation guide for ACM Scholar CLI tool.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        
+        .container { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+        
+        /* Header */
+        header {
+            padding: 40px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 40px;
+        }
+
+        .back-link {
+            color: var(--primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .back-link:hover { text-decoration: underline; }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            margin: 40px 0 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            margin: 32px 0 16px;
+            color: var(--text-primary);
+        }
+
+        p { margin-bottom: 16px; color: var(--text-secondary); }
+        
+        ul, ol {
+            margin-bottom: 24px;
+            padding-left: 24px;
+            color: var(--text-secondary);
+        }
+        
+        li { margin-bottom: 8px; }
+
+        /* Code Block */
+        .code-block {
+            background: #0d1117;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: #e6edf3;
+            line-height: 1.6;
+        }
+        
+        .cmd { color: #79c0ff; }
+        .comment { color: #8b949e; }
+        .string { color: #a5d6ff; }
+        
+        /* Alert/Callout */
+        .alert {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 24px 0;
+            color: var(--text-primary);
+        }
+
+        .alert-warning {
+            background: rgba(234, 179, 8, 0.1);
+            border: 1px solid rgba(234, 179, 8, 0.2);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 24px 0;
+            font-size: 0.9rem;
+        }
+        
+        th, td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        th {
+            background: var(--bg-card);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        td { color: var(--text-secondary); }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            margin-top: 60px;
+        }
+        
+        footer a { color: var(--primary); text-decoration: none; }
+    </style>
+    <script data-goatcounter="https://open-notebook-acm.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-link">← Back to Home</a>
+            <h1>ACM Scholar CLI<br>本地安装测试指南</h1>
+            <p>Last Updated: 2026-01-03 | Tested on Windows 11, Python 3.13</p>
+        </header>
+
+        <section>
+            <h2>📋 前置要求</h2>
+            <ul>
+                <li>Python 3.10+ 已安装</li>
+                <li>Git 已安装</li>
+                <li>pip 已安装</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>🚀 安装方式</h2>
+            
+            <h3>方式 A：从 GitHub 安装（需网络）</h3>
+            <div class="code-block">
+                <span class="cmd">pip install</span> <span class="string">"git+https://github.com/hongping-zh/open-notebook.git"</span>
+            </div>
+
+            <h3>方式 B：本地安装（推荐）</h3>
+            <div class="code-block">
+                <span class="comment"># 1. 克隆仓库</span><br>
+                <span class="cmd">git clone</span> https://github.com/hongping-zh/open-notebook.git<br>
+                <span class="cmd">cd</span> open-notebook<br><br>
+                <span class="comment"># 2. 本地安装</span><br>
+                <span class="cmd">pip install</span> -e .
+            </div>
+        </section>
+
+        <section>
+            <h2>⚠️ PATH 配置</h2>
+            <div class="alert alert-warning">
+                <strong>注意：</strong>安装后如果出现 <code>acm 无法识别</code> 错误，需要添加 Python Scripts 到 PATH。
+            </div>
+
+            <h3>临时添加（当前会话有效）</h3>
+            <div class="code-block">
+                $env:PATH += <span class="string">";C:\Users\14593\AppData\Roaming\Python\Python313\Scripts"</span>
+            </div>
+
+            <h3>永久添加</h3>
+            <div class="code-block">
+                [Environment]::SetEnvironmentVariable(<span class="string">"PATH"</span>, $env:PATH + <span class="string">";C:\Users\14593\AppData\Roaming\Python\Python313\Scripts"</span>, <span class="string">"User"</span>)
+            </div>
+            <p><em>注：Python 版本目录可能不同（如 Python311），请根据实际情况调整路径。</em></p>
+        </section>
+
+        <section>
+            <h2>✅ 验证安装</h2>
+            <div class="code-block">
+                <span class="comment"># 查看版本</span><br>
+                <span class="cmd">acm</span> --version<br>
+                <span class="comment"># 预期输出: ACM Scholar CLI 版本: 0.1.0</span><br><br>
+                <span class="comment"># 查看帮助</span><br>
+                <span class="cmd">acm</span> --help
+            </div>
+        </section>
+
+        <section>
+            <h2>🔍 功能测试</h2>
+            
+            <h3>1. 论文搜索</h3>
+            <div class="code-block">
+                <span class="cmd">acm search</span> <span class="string">"transformer attention"</span>
+            </div>
+            
+            <h3>2. ACM 专用搜索</h3>
+            <div class="code-block">
+                <span class="cmd">acm search-acm</span> <span class="string">"deep learning"</span>
+            </div>
+
+            <h3>3. 交互式搜索</h3>
+            <div class="code-block">
+                <span class="cmd">acm interactive</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>🐛 常见问题 (FAQ)</h2>
+            
+            <h3>Q1: `acm` 无法识别</h3>
+            <p><strong>原因</strong>: Python Scripts 目录不在 PATH 中。<br>
+            <strong>解决</strong>: 参考上方的 "PATH 配置" 章节添加环境变量。</p>
+
+            <h3>Q2: Connection Error / Proxy Issues</h3>
+            <p><strong>解决</strong>: 清除 Git 代理配置：</p>
+            <div class="code-block">
+                <span class="cmd">git config</span> --global --unset http.proxy<br>
+                <span class="cmd">git config</span> --global --unset https.proxy
+            </div>
+        </section>
+
+        <footer>
+            <p>Made with ❤️ by <a href="https://github.com/hongping-zh">hongping-zh</a></p>
+        </footer>
+    </div>
+</body>
+</html>
